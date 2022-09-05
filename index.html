@@ -48,7 +48,7 @@
 
     function getRemainingTime(date) {
         if (!date) {
-            return "Error :(";
+            return "";
         }
         // from https://www.w3schools.com/howto/howto_js_countdown.asp
         const distance = getDateDistance(date);
@@ -83,18 +83,32 @@
         }
     }
 
-    function writePage(title, date, remaining) {
+    function getDisplayDate(date) {
+        if (!date) {
+            return "Error, no date provided :(";
+        } else {
+            return date.toLocaleString();
+        }
+    }
+
+    function writePage(title, displayDate, remaining) {
         writeText("title", title);
-        writeText("date", date);
+        writeText("date", displayDate);
         writeText("remaining", remaining);
     }
 
-    // Update the count down every 1 second
-    var x = setInterval(function () {
+    function runApp() {
         const title = getTitle();
         const date = getDate();
         const remaining = getRemainingTime(date);
-        writePage(title, date, remaining);
+        const displayDate = getDisplayDate(date);
+        writePage(title, displayDate, remaining);
+    }
+
+    runApp();
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+        runApp();
     }, 1000);
 
 </script>
