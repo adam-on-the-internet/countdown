@@ -87,7 +87,7 @@
         if (!date) {
             return "Error, no date provided :(";
         } else {
-            return date.toLocaleString();
+            return new Date(date).toLocaleDateString();
         }
     }
 
